@@ -12,17 +12,24 @@
     <title>Title</title>
 </head>
 <body>
-Result: ${numResult} <!-- numResult -- значение аттрибута из HelloServlet -->
+
+<h3>Welcome!</h3>
+<hr/>
+${user}, hello!
+<hr/>
+
+Your ${numResult} triangles:
 <br/>
-<table>
+<table border="1">
     <c:forEach var="elem" items="${lst}" varStatus="status">
         <tr>
-            <td><c:out value="${ elem }" /></td>
-            <td><c:out value="${ elem.id }" /></td>
-            <td><c:out value="${ elem.text }" /></td>
             <td><c:out value="${ status.count }" /></td>
+            <td><c:out value="${ elem }" /></td>
         </tr>
     </c:forEach>
 </table>
+
+<a href="controller?command=logout">Logout</a>
+
 </body>
 </html>
