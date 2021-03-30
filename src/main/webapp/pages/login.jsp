@@ -3,8 +3,6 @@
 <body>
 <form name="loginForm" method="POST" action="controller">
     <input type="hidden" name="command" value="login" />
-    <br/>Number of triangle:<br/>
-    <input type="text" name="triangleNum" value=""/>
     <br/>Login:<br/>
     <input type="text" name="login" value=""/>
     <br/>Password:<br/>

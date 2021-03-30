@@ -9,27 +9,25 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Main</title>
 </head>
-<body>
 
-<h3>Welcome!</h3>
-<hr/>
-${user}, hello!
+<h3>Welcome, ${user}!</h3>
 <hr/>
 
-Your ${numResult} triangles:
+<form name="findUsersByNickname" method="POST" action="controller">
+    <input type="hidden" name="command" value="find_users_by_nickname" />
+    <input type="text" name="nickname" value=""/>
+    <input type="submit" value="Find all users by nickname (or part)" name="submit">
+</form>
+
+<form name="findUsers" method="POST" action="controller">
+    <input type="hidden" name="command" value="find_all_users" />
+    <input type="submit" value="Find all users" name="submit">
+</form>
+<hr/>
+
 <br/>
-<table border="1">
-    <c:forEach var="elem" items="${lst}" varStatus="status">
-        <tr>
-            <td><c:out value="${ status.count }" /></td>
-            <td><c:out value="${ elem }" /></td>
-        </tr>
-    </c:forEach>
-</table>
-
 <a href="controller?command=logout">Logout</a>
-
 </body>
 </html>
