@@ -8,4 +8,5 @@ import java.util.List;
 public interface BaseDao <K, T extends Entity> { //todo use Entity  (26.03 51:00)
     List<User> findAllUsers() throws DaoException;
     List<User> findUsersByNickname(String nickname) throws DaoException;
+    public String findPasswordByNickname(String nickname) throws DaoException;
 }

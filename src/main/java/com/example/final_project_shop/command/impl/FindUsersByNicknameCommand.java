@@ -4,14 +4,13 @@ import com.example.final_project_shop.command.ActionCommand;
 import com.example.final_project_shop.entity.User;
 import com.example.final_project_shop.resource.ConfigurationManager;
 import com.example.final_project_shop.service.ServiceException;
-import com.example.final_project_shop.service.UserService;
+import com.example.final_project_shop.service.impl.UserServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.List;
 
 public class FindUsersByNicknameCommand implements ActionCommand {
-    private static final UserService userService = new UserService();
+    private static final UserServiceImpl userService = new UserServiceImpl();
 
     @Override
     public String execute(HttpServletRequest request) {
@@ -27,7 +26,6 @@ public class FindUsersByNicknameCommand implements ActionCommand {
             // log
             page = ConfigurationManager.getProperty("path.page.error");
         }
-
         return page;
     }
 }

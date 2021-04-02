@@ -11,6 +11,7 @@ public class User extends Entity {
     private String password;
     private Date dob;
     private String phone;
+    private String email;
     private String role;
 
     public User() {
@@ -72,6 +73,14 @@ public class User extends Entity {
         this.phone = phone;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getRole() {
         return role;
     }
@@ -90,7 +99,8 @@ public class User extends Entity {
         result = prime * result + ((nickname == null) ? 0 : nickname.hashCode());
         result = prime * result + ((password == null) ? 0 : password.hashCode());
         result = prime * result + ((dob == null) ? 0 : dob.hashCode());
-        result = prime * result + ((phone == null) ? 0 : dob.hashCode());
+        result = prime * result + ((phone == null) ? 0 : phone.hashCode());
+        result = prime * result + ((email == null) ? 0 : email.hashCode());
         result = prime * result + ((role == null) ? 0 : role.hashCode());
         return result;
     }
@@ -100,9 +110,10 @@ public class User extends Entity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return userId == user.userId && phone == user.phone && Objects.equals(name, user.name) &&
-                Objects.equals(surname, user.surname) && Objects.equals(nickname, user.nickname) &&
-                Objects.equals(password, user.password) && Objects.equals(dob, user.dob) && Objects.equals(role, user.role);
+        return userId == user.userId && Objects.equals(name, user.name) && Objects.equals(surname, user.surname) &&
+                                        Objects.equals(nickname, user.nickname) && Objects.equals(password, user.password) &&
+                                        Objects.equals(dob, user.dob) && Objects.equals(phone, user.phone) &&
+                                        Objects.equals(email, user.email) && Objects.equals(role, user.role);
     }
 
     @Override
@@ -115,6 +126,7 @@ public class User extends Entity {
         sb.append(", password='").append(password).append('\'');
         sb.append(", dob=").append(dob);
         sb.append(", phone=").append(phone).append('\'');
+        sb.append(", email=").append(email).append('\'');
         sb.append(", role='").append(role).append('\'');
         sb.append('}');
         return sb.toString();

@@ -8,7 +8,7 @@ public class ConnectionCreator {
     private static final DatabaseConfig databaseConfig = new DatabaseConfig();
 
     private ConnectionCreator(){}
-
+    //fixme Class.forName in constructor or static-block
     public static Connection createConnection() throws SQLException {
         Connection connection;
         try {

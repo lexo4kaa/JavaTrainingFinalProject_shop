@@ -12,7 +12,7 @@ We managed to find ${lst_length} people
             <td><c:out value="${ elem.name }" /></td>
             <td><c:out value="${ elem.surname }" /></td>
             <td><c:out value="${ elem.nickname }" /></td>
-            <td><c:out value="${ elem.phone }" /></td>
+            <td><c:out value="${ elem.email }" /></td>
             <td><c:out value="${ elem.role }" /></td>
         </tr>
     </c:forEach>

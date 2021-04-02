@@ -4,13 +4,13 @@ import com.example.final_project_shop.command.ActionCommand;
 import com.example.final_project_shop.entity.User;
 import com.example.final_project_shop.resource.ConfigurationManager;
 import com.example.final_project_shop.service.ServiceException;
-import com.example.final_project_shop.service.UserService;
+import com.example.final_project_shop.service.impl.UserServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public class FindAllUsersCommand implements ActionCommand {
-    private static final UserService userService = new UserService();
+    private static final UserServiceImpl userService = new UserServiceImpl();
 
     @Override
     public String execute(HttpServletRequest request) {

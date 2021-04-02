@@ -4,6 +4,7 @@ import com.example.final_project_shop.command.ActionFactory;
 import com.example.final_project_shop.dao.DaoException;
 import com.example.final_project_shop.resource.ConfigurationManager;
 import com.example.final_project_shop.resource.MessageManager;
+import com.example.final_project_shop.service.ServiceException;
 
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -19,7 +20,7 @@ public class Controller extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (DaoException e) {
+        } catch (ServiceException e) {
             e.printStackTrace();
         }
     }
@@ -27,11 +28,11 @@ public class Controller extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (DaoException e) {
+        } catch (ServiceException e) {
             e.printStackTrace();
         }
     }
-    private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, DaoException {
+    private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ServiceException {
         ActionFactory client = new ActionFactory();
         ActionCommand command = client.defineCommand(request);
         String page = command.execute(request);

@@ -1,5 +1,8 @@
 package com.example.final_project_shop.db;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -14,6 +17,7 @@ public class DatabaseConfig {
     private final String url;
     private final String username;
     private final String password;
+    private static Logger logger = LogManager.getLogger();
 
     public DatabaseConfig(){
         Properties properties = new Properties();
@@ -22,7 +26,7 @@ public class DatabaseConfig {
             InputStream inputStream = classLoader.getResourceAsStream(FILE_NAME);
             properties.load(inputStream);
         } catch (IOException e) {
-            // log
+            logger.info("Error while reading properties file: " + FILE_NAME + " in DatabaseConfig", e);
             throw new RuntimeException("Error while reading properties file: " + FILE_NAME, e);
         }
         driverName = properties.getProperty(DATABASE_DRIVER_NAME);
