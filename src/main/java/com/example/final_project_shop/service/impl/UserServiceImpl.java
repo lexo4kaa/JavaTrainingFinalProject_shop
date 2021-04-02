@@ -7,15 +7,18 @@ import com.example.final_project_shop.entity.User;
 import com.example.final_project_shop.service.ServiceException;
 import com.example.final_project_shop.service.UserService;
 import com.example.final_project_shop.validator.UserValidator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
     private final BaseDao baseDao = BaseDaoImpl.getInstance();
+    private static Logger logger = LogManager.getLogger();
 
     @Override
     public List<User> findAllUsers() throws ServiceException {
@@ -23,6 +26,7 @@ public class UserServiceImpl implements UserService {
         try {
             users = baseDao.findAllUsers();
         } catch (DaoException e) {
+            logger.info("baseDao.findAllUsers() is failed in UserServiceImpl", e);
             throw new ServiceException(e);
         }
         return users;
@@ -35,6 +39,7 @@ public class UserServiceImpl implements UserService {
             // todo add validator (video 26.03 23:00)
             users = baseDao.findUsersByNickname(nickname);
         } catch (DaoException e) {
+            logger.info("baseDao.findUsersByNickname(" + nickname + ") is failed in UserServiceImpl", e);
             throw new ServiceException(e);
         }
         return users;
@@ -48,6 +53,7 @@ public class UserServiceImpl implements UserService {
             try {
                 findPassword = baseDao.findPasswordByNickname(login);
             } catch (DaoException e) {
+                logger.info("baseDao.findPasswordByNickname(" + login + ") is failed in UserServiceImpl", e);
                 throw new ServiceException(e);
             }
         }
@@ -58,9 +64,10 @@ public class UserServiceImpl implements UserService {
         byte[] bytesEncoded = null;
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-1");
-            messageDigest.update(password.getBytes("utf8"));
+            messageDigest.update(password.getBytes(StandardCharsets.UTF_8));
             bytesEncoded = messageDigest.digest();
-        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+        } catch (NoSuchAlgorithmException e) {
+            logger.info("encoding failed", e);
             e.printStackTrace();
         }
         BigInteger bigInt = new BigInteger(1, bytesEncoded);
