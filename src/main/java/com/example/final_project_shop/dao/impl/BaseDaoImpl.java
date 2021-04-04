@@ -5,6 +5,8 @@ import com.example.final_project_shop.dao.UsersColumn;
 import com.example.final_project_shop.dao.DaoException;
 import com.example.final_project_shop.db.ConnectionCreator;
 import com.example.final_project_shop.entity.User;
+import com.example.final_project_shop.pool.ConnectionPoolException;
+import com.example.final_project_shop.pool.CustomConnectionPool;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -33,13 +35,13 @@ public class BaseDaoImpl implements BaseDao {
     @Override
     public List<User> findAllUsers() throws DaoException {
         List<User> users = new ArrayList<>();
-        try(Connection connection = ConnectionCreator.createConnection()) {
+        try(Connection connection = CustomConnectionPool.getInstance().getConnection()) {
             PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){
                 users.add(createUserFromResultSet(resultSet));
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ConnectionPoolException e) {
             throw new DaoException("Error while finding users", e);
         }
         return users;
@@ -48,14 +50,14 @@ public class BaseDaoImpl implements BaseDao {
     @Override
     public List<User> findUsersByNickname(String nickname) throws DaoException {
         List<User> users = new ArrayList<>();
-        try(Connection connection = ConnectionCreator.createConnection()) {
+        try(Connection connection = CustomConnectionPool.getInstance().getConnection()) {
             PreparedStatement statement = connection.prepareStatement(SQL_FIND_BY_NICKNAME);
             statement.setString(1, nickname + PERCENT);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){
                 users.add(createUserFromResultSet(resultSet));
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ConnectionPoolException e) {
             throw new DaoException("Error while finding users", e);
         }
         return users;
@@ -64,14 +66,14 @@ public class BaseDaoImpl implements BaseDao {
     @Override
     public String findPasswordByNickname(String nickname) throws DaoException {
         String password = "";
-        try(Connection connection = ConnectionCreator.createConnection()) {
+        try(Connection connection = CustomConnectionPool.getInstance().getConnection()) {
             PreparedStatement statement = connection.prepareStatement(SQL_FIND_PASSWORD_BY_NICKNAME);
             statement.setString(1, nickname);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()){
                 password = resultSet.getString(UsersColumn.USER_PASSWORD);
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ConnectionPoolException e) {
             throw new DaoException("Error while finding users", e);
         }
         return password;

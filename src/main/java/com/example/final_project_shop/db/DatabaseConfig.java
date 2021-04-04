@@ -8,19 +8,19 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class DatabaseConfig {
+    private static final Logger logger = LogManager.getLogger();
     private static final String FILE_NAME = "properties/database.properties";
     private static final String DATABASE_DRIVER_NAME = "db.driver";
     private static final String DATABASE_URL = "db.url";
     private static final String DATABASE_USERNAME = "db.username";
     private static final String DATABASE_PASSWORD = "db.password";
+    private static final Properties properties = new Properties();
     private final String driverName;
     private final String url;
     private final String username;
     private final String password;
-    private static Logger logger = LogManager.getLogger();
 
     public DatabaseConfig(){
-        Properties properties = new Properties();
         try {
             ClassLoader classLoader = getClass().getClassLoader();
             InputStream inputStream = classLoader.getResourceAsStream(FILE_NAME);

@@ -1,19 +1,31 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<html><head><title>Login</title></head>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/login.css"/>
+</head>
 <body>
 <form name="loginForm" method="POST" action="controller">
     <input type="hidden" name="command" value="login" />
-    <br/>Login:<br/>
-    <input type="text" name="login" value=""/>
-    <br/>Password:<br/>
-    <input type="password" name="password" value=""/>
-    <br/>
-    ${errorLoginPassMessage}
-    <br/>
-    ${wrongAction}
-    <br/>
-    ${nullPage}
-    <br/>
-    <input type="submit" value="Log in"/>
-</form><hr/>
-</body></html>
+
+    <div class="form_auth_block">
+        <div class="form_auth_block_content">
+            <p class="form_auth_block_head_text">Authorization</p>
+            <label>Enter your login</label>
+            <input type="text" name="login" value="">
+            <label>Enter your password</label>
+            <input type="password" name="password" value="">
+            <br/>
+            ${errorLoginPassMessage}
+            <br/>
+            ${wrongAction}
+            <br/>
+            ${nullPage}
+            <br/>
+            <input class="form_auth_button" type="submit" value="Log in"/>
+        </div>
+    </div>
+
+</form>
+</body>
+</html>

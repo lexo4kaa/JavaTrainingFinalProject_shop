@@ -7,7 +7,10 @@ import java.util.concurrent.Executor;
 
 public class ProxyConnection implements Connection {
     private Connection connection;
-    ProxyConnection(Connection connection) {}
+
+    ProxyConnection(Connection connection) {
+        this.connection = connection;
+    }
 
     @Override
     public Statement createStatement() throws SQLException {
@@ -51,7 +54,7 @@ public class ProxyConnection implements Connection {
 
     @Override
     public void close() throws SQLException {
-        CustomConnectionPool.INSTANCE.releaseConnection(this);
+        CustomConnectionPool.getInstance().releaseConnection(this);
     }
 
     void reallyClose() {
