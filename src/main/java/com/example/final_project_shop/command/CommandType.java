@@ -1,9 +1,6 @@
 package com.example.final_project_shop.command;
 
-import com.example.final_project_shop.command.impl.FindAllUsersCommand;
-import com.example.final_project_shop.command.impl.FindUsersByNicknameCommand;
-import com.example.final_project_shop.command.impl.LoginCommand;
-import com.example.final_project_shop.command.impl.LogoutCommand;
+import com.example.final_project_shop.command.impl.*;
 
 public enum CommandType {
     LOGIN {
@@ -14,6 +11,11 @@ public enum CommandType {
     LOGOUT {
         {
             this.command = new LogoutCommand();
+        }
+    },
+    REGISTRATION {
+        {
+            this.command = new RegistrationCommand();
         }
     },
     FIND_ALL_USERS {
