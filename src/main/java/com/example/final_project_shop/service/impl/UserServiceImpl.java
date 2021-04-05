@@ -74,4 +74,14 @@ public class UserServiceImpl implements UserService {
         String enterPassHex = bigInt.toString(16);
         return enterPassHex;
     }
+
+    @Override
+    public boolean registrateUser(String name, String surname, String nickname, String phone,
+                                  String email, String password) throws ServiceException {
+        if (UserValidator.isLoginCorrect(nickname) && UserValidator.isPasswordCorrect(password) &&
+                UserValidator.isEmailCorrect(email)) {
+
+        }
+        return true;
+    }
 }
