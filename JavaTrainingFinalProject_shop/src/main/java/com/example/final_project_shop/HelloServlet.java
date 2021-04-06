@@ -1,7 +1,6 @@
 package com.example.final_project_shop;
 
 import java.io.*;
-import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
@@ -22,7 +21,7 @@ public class HelloServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
     }
 
     public void destroy() {
