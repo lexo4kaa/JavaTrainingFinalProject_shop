@@ -14,12 +14,12 @@
 <form name="findUsersByNickname" method="POST" action="controller">
     <input type="hidden" name="command" value="find_users_by_nickname" />
     <input type="text" name="nickname" value=""/>
-    <input type="submit" value="Find all users by nickname (or part)" name="submit">
+    <input type="submit" value="Find all users by nickname (or part)" name="submit"/>
 </form>
 
 <form name="findUsers" method="POST" action="controller">
-    <input type="hidden" name="command" value="find_all_users" />
-    <input type="submit" value="Find all users" name="submit">
+    <input type="hidden" name="command" value="find_all_users"/>
+    <input type="submit" value="Find all users" name="submit"/>
 </form>
 <hr/>
 

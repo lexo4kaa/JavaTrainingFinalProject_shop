@@ -17,15 +17,19 @@
             <input type="password" name="password" value="">
             <br/>
             ${errorLoginPassMessage}
-            <br/>
             ${wrongAction}
-            <br/>
             ${nullPage}
             <br/>
             <input class="form_auth_button" type="submit" value="Log in"/>
+            <br/>
+            <a href="pages/registration.jsp">I haven't an account</a>
+
         </div>
     </div>
 
 </form>
+
+<br/>
+
 </body>
 </html>
